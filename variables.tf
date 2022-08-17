@@ -230,7 +230,7 @@ variable "transit_gateways" {
     object({
       name                                   = string 
       description                            = string 
-      
+      tags                                   = map(string)
       #Set if you have a specific ASN you need to use. If not, set to null to use AWS automatically assigned ASN
       amazon_side_asn                        = number
       auto_accept_shared_attachments         = bool

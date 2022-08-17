@@ -230,7 +230,7 @@ variable "transit_gateways" {
     object({
       name                                   = string 
       description                            = string 
-      
+      tags                                   = map(string)    
       #Set if you have a specific ASN you need to use. If not, set to null to use AWS automatically assigned ASN
       amazon_side_asn                        = number
       auto_accept_shared_attachments         = bool
@@ -243,31 +243,3 @@ variable "transit_gateways" {
 
 }
 
-#variable "route_tables" { 
-#  description = "Defines route tables andtheir rules"
-#  default     = null
-#
-#  type = list(
-#      object({
-#        #Name of route table
-#        name             = string
-#  
-#        #Can be set to VPC name set in this module in vpc_setup variable or external VPC id
-#        vpc_name_or_id   = string
-#        propagating_vgws = list(string)
-#        tags             = map(string)
-#
-#        routes           = list(object({
-#            cidr_block                 = string
-#            ipv6_cidr_block            = string
-#            destination_prefix_list_id = string
-#            type                       = string
-#            destination_name           = string
-#            destination_id             = string
-#          }) 
-#        )
-#      })
-#  )
-#}
-#
-#

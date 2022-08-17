@@ -143,6 +143,20 @@ vpc_endpoints = [
   },
 ]
 
+transit_gateways = [
+  {
+    name                                   = "sample transit gateway"
+    description                            = "sample transit gateway"
+    tags                                   = {"Type" = "Sample"}
+    amazon_side_asn                        = null
+    auto_accept_shared_attachments         = false
+    enable_default_route_table_association = false
+    enable_default_route_table_propagation = false
+    enable_dns_support                     = true
+    enable_vpn_ecmp_support                = false
+  },
+]
+
 route_tables = [
   {
     name             = "sample route table"
@@ -166,7 +180,47 @@ route_tables = [
         type                       = "egress only internet gateway"
         destination_name           = null
         destination_id             = null
-      },
+      }, 
+      {
+        cidr_block                 = "192.16.0.0/28"
+        ipv6_cidr_block            = null
+        destination_prefix_list_id = null
+        type                       = "vpn gateway"
+        destination_name           = null
+        destination_id             = null
+      }, 
+      {
+        cidr_block                 = "192.16.1.0/28"
+        ipv6_cidr_block            = null
+        destination_prefix_list_id = null
+        type                       = "nat gateway"
+        destination_name           = "sample NAT gateway"
+        destination_id             = null
+      }, 
+      {
+        cidr_block                 = "192.16.2.0/28"
+        ipv6_cidr_block            = null
+        destination_prefix_list_id = null
+        type                       = "vpc peering"
+        destination_name           = "sample VPC peering"
+        destination_id             = null
+      }, 
+      {
+        cidr_block                 = "192.16.3.0/28"
+        ipv6_cidr_block            = null
+        destination_prefix_list_id = null
+        type                       = "vpc endpoint"
+        destination_name           = "Sample S3 Gateway endpoint"
+        destination_id             = null
+      }, 
+      #{
+      #  cidr_block                 = "192.16.4.0/28"
+      #  ipv6_cidr_block            = null
+      #  destination_prefix_list_id = null
+      #  type                       = "transit gateway"
+      #  destination_name           = "sample transit gateway"
+      #  destination_id             = null
+      #}, 
     ]          
   },
 ]

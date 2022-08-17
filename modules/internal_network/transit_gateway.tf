@@ -14,7 +14,7 @@ locals {
       "enable_default_route_table_propagation" = item.enable_default_route_table_propagation
       "enable_dns_support"                     = item.enable_dns_support
       "enable_vpn_ecmp_support"                = item.enable_vpn_ecmp_support
-      "tags"                                   = item.tags
+      "tags"                                   = merge({"Name" = item.name},item.tags)
     } 
   } : {}
 }

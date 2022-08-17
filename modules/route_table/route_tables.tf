@@ -48,7 +48,7 @@ locals {
         #If destination_id is set, we use that value. If not, we try to use vpc_name_or_id to pull the egress only internet gateway
         route.destination_id != null ? route.destination_id : var.egress_only_internet_gateways[item.vpc_name_or_id].id =>
         {
-          "ipv6_cidr_block"                 = route.cidr_block
+          "ipv6_cidr_block"                 = route.ipv6_cidr_block
           "destination_prefix_list_id"      = route.destination_prefix_list_id
         } if route.type == "egress only internet gateway"
     } 
