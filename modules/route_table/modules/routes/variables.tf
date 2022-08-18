@@ -3,6 +3,11 @@ variable "route_table_id" {
   type        = string
 }
 
+variable "vpc_id" {
+  description = "The ID of the VPC"
+  type        = string
+}
+
 variable "internet_gateway_routes" {
   #Expected input:
   # map[<internet gateway id>] => {

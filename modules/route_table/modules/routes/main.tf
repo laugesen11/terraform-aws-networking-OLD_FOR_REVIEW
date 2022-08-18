@@ -48,6 +48,7 @@ resource "aws_vpc_endpoint_route_table_association" "vpc_endpoint_routes" {
 }
 
 #Set up Transit gateway routes
+#WARNING: Must set up Transit gateway VPC attachment for this to work
 resource "aws_route" "transit_gateway_routes" {
   route_table_id              = var.route_table_id
   for_each                    = var.transit_gateway_routes

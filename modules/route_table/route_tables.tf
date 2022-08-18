@@ -1,17 +1,5 @@
-#Creates route tables and routes for specific entities (internet gateway, NAT gateway, etc...)
-#Dependancies:
-#  - variables.tf - defines VPCs that need egress only internet gateways. 
-#    - Reads in:
-#      - route_tables variable - sets routes and defines type of route
-#
-#  - vpc.tf                          - creates VPCs that contain route table and subnets we assign route table to
-#  - egress_only_internet_gateway.tf - creates egress only internet gateways used as destinations
-#  - internet_gateway.tf             - creates internet gateways used as destinations
-#  - nat_gateways.tf                 - creates NAT gatewats used as destination
-#  - transit_gateway.tf              - creates transit gateways used as destination
-#  - vpc_endpoint.tf                 - creates VPC endpoints used as destination
-#  - vpc_peering.tf                  - creates VPC peering connections used as destination
-#  - vpn_gateway.tf                  - creates VPN gateways used as destination
+#Sets up local configuration for route tables based on module inputs
+#These configurations are then fed into the 'routes' module in main.tf
 
 locals {
   #Configures the overall settings for the route tables
@@ -156,26 +144,3 @@ locals {
   }
 }
 
-#Moves all local inputs into route table module
-#module "route_tables" {
-#  source                              = "./modules/route_table"
-#  for_each                            = local.route_table_config
-#  name                                = each.key
-#  vpc_id                              = each.value.vpc_id
-#  propagating_vgws                    = each.value.propagating_vgws
-#  internet_gateway_routes             = local.route_table_internet_gateway_routes[each.key]
-#  egress_only_internet_gateway_routes = local.route_table_egress_only_internet_gateway_routes[each.key]
-#  vpn_gateway_routes                  = local.route_table_vpn_gateway_routes[each.key]
-#  nat_gateway_routes                  = local.route_table_nat_gateway_routes[each.key]
-#  vpc_peering_routes                  = local.route_table_vpc_peering_routes[each.key]
-#  vpc_endpoint_routes                 = local.route_table_vpc_endpoint_routes[each.key]
-#  transit_gateway_routes              = local.route_table_transit_gateway_routes[each.key]
-#  carrier_gateway_routes              = local.route_table_carrier_gateway_routes[each.key]
-#  network_interface_routes            = local.route_table_network_interface_routes[each.key]
-#  tags                                = each.value.tags
-#
-#  depends_on = [  
-#    aws_internet_gateway.internet_gateways,
-#    local.route_table_internet_gateway_routes
-#  ]
-#}
