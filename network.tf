@@ -1,12 +1,13 @@
 module "network_boundaries" {
-  source             = "./modules/internal_network"
-  vpc_setup          = var.vpc_setup
-  nacl_egress_rules  = var.nacl_egress_rules
-  nacl_ingress_rules = var.nacl_ingress_rules
-  nat_gateways       = var.nat_gateways
-  vpc_peering        = var.vpc_peering
-  vpc_endpoints      = var.vpc_endpoints
-  transit_gateways   = var.transit_gateways
+  source                          = "./modules/internal_network"
+  vpc_setup                       = var.vpc_setup
+  nacl_egress_rules               = var.nacl_egress_rules
+  nacl_ingress_rules              = var.nacl_ingress_rules
+  nat_gateways                    = var.nat_gateways
+  vpc_peering                     = var.vpc_peering
+  vpc_endpoints                   = var.vpc_endpoints
+  transit_gateways                = var.transit_gateways
+  transit_gateway_vpc_attachments = var.transit_gateway_vpc_attachments
 }
 
 module "route_tables" {

@@ -240,7 +240,37 @@ variable "transit_gateways" {
       enable_vpn_ecmp_support                = bool
     })
   )
+}
 
+variable "transit_gateway_vpc_attachments" {
+  description = "Establishes connection between transit gateway and a VPC. Must have this in place before adding transit gateway to route table"
+  default     = null
+  
+  type = list(
+    object({
+      name                       = string
+      #If entry matches a name in the "transit_gateways" variable, we use that ID
+      #Otherwise we assume this is the ID of an external transit gateway
+      transit_gateway_name_or_id = string
+      #Entry must matche a name in the "vpc_setup" variable
+      #MUST use this value if intending to use subnet names as defined in 'vpc_setup' with 'subnets' setting below
+      vpc_name                   = string
+      #If defined, we ignore 'vpc_name' and cannot use subnet names as defined in 'vpc_setup'
+      vpc_id                     = string
+      #Is vpc_name is defined (and vpc_id is not), can use subnets names as defined in 'vpc_setup' variable
+      #If not, all entries must be a valid subnet ID
+      subnets                    = list(string)
+      tags                       = map(string)
+
+      #For all the settings below, a value of 'true' will enable this setting. 
+      #Look at the transit gateway attachment documentation to understand what this setting does
+      enable_appliance_mode_support                          = bool
+      enable_dns_support                                     = bool
+      enable_ipv6_support                                    = bool
+      enable_transit_gateway_default_route_table_association = bool
+      enable_transit_gateway_default_route_table_propagation = bool
+    })
+  )
 }
 
 variable "route_tables" { 
