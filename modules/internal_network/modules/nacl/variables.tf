@@ -5,6 +5,7 @@
 #  - vpc_id     - VPC NACL is assigned to
 #  - egress     - egress rules for NACL
 #  - ingress    - ingress rules for NACL
+#  - tags       - descriptive labels of resources
 
 #VPC ID that this NACL is assigned to
 variable "vpc_id" {

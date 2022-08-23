@@ -7,7 +7,7 @@ locals {
       "availability_zone"                = item.availability_zone
       "cidr_block"                       = item.cidr_block
       "ipv6_cidr_block"                  = item.ipv6_cidr_block
-      "tags"                             = item.tags
+      "tags"                             = merge({"Name" = item.name},item.tags)
     }
   }
 
@@ -17,7 +17,7 @@ locals {
 resource "aws_vpc" "vpc" {
   cidr_block                       = var.cidr_block
   assign_generated_ipv6_cidr_block = var.assign_generated_ipv6_cidr_block
-  tags                             = var.tags
+  tags                             = merge({"Name" = var.name}, var.tags)
 }
 
 #Build our subnets

@@ -1,5 +1,6 @@
 #Sets up local configuration for route tables based on module inputs
 #These configurations are then fed into the 'routes' module in main.tf
+#The only thing created here is the locals block
 
 locals {
   #Configures the overall settings for the route tables

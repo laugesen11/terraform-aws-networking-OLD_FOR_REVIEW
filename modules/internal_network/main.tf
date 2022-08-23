@@ -8,5 +8,9 @@
 #   - Egress only internet gateways
 #   - NAT Gateways
 #   - VPN gateways
-#   - basic route tables for subnets (based on external access)
+#   - Transit gateways
+#   - Transit Gateway VPC attachments
+#   - VPC endpoints
+#   - VPC peering connections
+#   - NACLs
 
